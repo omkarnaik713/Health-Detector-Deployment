@@ -6,11 +6,19 @@ import pickle
 from flask_cors import CORS
 from pydub import AudioSegment
 from io import BytesIO
+from flask import send_from_directory
+
 
 app = Flask(__name__)
 CORS(app)
 model = pickle.load(open('nn_model.pkl','rb'))
 app.config['upload_folder'] = 'uploads'
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
+
 
 def pre_process_audio(audio):
     mfcc = librosa.feature.mfcc(y=audio,sr = 16000, n_mfcc = 50)
