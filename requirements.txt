@@ -3,6 +3,5 @@ librosa
 numpy
 flask_cors
 tensorflow
-tensorflow-keras
 pandas
 sklearn
