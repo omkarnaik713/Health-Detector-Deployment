@@ -1,7 +1,6 @@
 flask
 librosa
 numpy
-pickle 
 flask_cors
 tensorflow
 tensorflow-keras
