@@ -2,6 +2,6 @@ flask
 librosa
 numpy
 flask_cors
-tensorflow
+keras
 pandas
 scikit-learn
