@@ -28,7 +28,7 @@ function SetupStrean(stream) {
         chunks.push(e.data);
     }
     recorder.onstop = e => {
-        const blob = new Blob(chunks , {'type' : "audio/wav"});
+        const blob = new Blob(chunks , {'type' : "audio/mp3"});
         chunks = [];
         sendDataToServer(blob);
 
@@ -53,9 +53,9 @@ function ToggleMic(){
 }
 function sendDataToServer(blob) {
     const formData = new FormData();
-    formData.append('audio', blob, 'recording.wav'); // Ensure file extension matches
+    formData.append('audio', blob, 'recording.mp3'); // Ensure file extension matches
 
-    fetch('http://127.0.0.1:5000/predict', {
+    fetch('http://127.0.0.1:8080/predict', {
         method: 'POST',
         body: formData
     })
