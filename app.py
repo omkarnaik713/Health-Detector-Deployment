@@ -8,6 +8,7 @@ from flask import send_from_directory
 import logging
 import subprocess
 import warnings 
+from werkzeug.utils import secure_filename
 warnings.filterwarnings('ignore')
 os.makedirs('/app/logs', exist_ok = True)
 logging.basicConfig(filename = '/app/logs/ app.log',level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -44,7 +45,7 @@ def predict():
         try :
 
             file = request.files['audio']    
-            filename = file.filename
+            filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['upload_folder'],filename))
             file_path = os.path.join(app.config['upload_folder'],filename)
             logging.debug(f'File saved at {file_path}')
