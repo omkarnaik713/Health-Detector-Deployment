@@ -54,8 +54,8 @@ function ToggleMic(){
 function sendDataToServer(blob) {
     const formData = new FormData();
     formData.append('audio', blob, 'recording.mp3'); // Ensure file extension matches
-
-    fetch('http://127.0.0.1:8080/predict', {
+    const apiUrl = window.location.protocol === 'https:' ? 'https://your-api-endpoint/predict' : 'http://127.0.0.1:8080/predict';
+    fetch(apiUrl, {
         method: 'POST',
         body: formData
     })
