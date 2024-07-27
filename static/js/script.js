@@ -54,7 +54,7 @@ function ToggleMic(){
 function sendDataToServer(blob) {
     const formData = new FormData();
     formData.append('audio', blob, 'recording.mp3'); // Ensure file extension matches
-    const apiUrl = window.location.protocol === 'https:' ? 'https://0.0.0.0:10000/predict' : 'http://127.0.0.1:8080/predict';
+    const apiUrl = window.location.protocol === 'https:' ? 'https://health-detector-deployment.onrender.com/predict' : 'http://127.0.0.1:8080/predict';
     fetch(apiUrl, {
         method: 'POST',
         body: formData
