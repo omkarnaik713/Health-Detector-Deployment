@@ -20,6 +20,9 @@ model = pickle.load(open('nn_model.pkl','rb'))
 app.config['upload_folder'] = '/var/log/uploads'
 uploads_folder = '/app/upload'
 
+@app.route('/ping', methods = ['GET'])
+def ping():
+    return 'OK', 200
 
 @app.route('/favicon.ico')
 def favicon():
