@@ -51,7 +51,7 @@ def predict():
             file_path = os.path.join(uploads_folder,filename)
             logging.debug(f'File saved at {file_path}')
             subprocess.call(['ffmpeg', '-i', file_path,os.path.join(uploads_folder,'audio.wav')])
-            wav_path = os.path.join(uploads_folder,'/audio.wav')
+            wav_path = os.path.join(uploads_folder,'audio.wav')
             logging.debug('Converted MP3 to WAV and saved ')
             audio,_ = librosa.load(wav_path,sr =16000)
             logging.debug('File loaded Successfully')
