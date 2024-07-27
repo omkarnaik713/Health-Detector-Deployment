@@ -18,6 +18,7 @@ app = Flask(__name__)
 CORS(app)
 model = pickle.load(open('nn_model.pkl','rb'))
 app.config['upload_folder'] = '/var/log/uploads'
+uploads_folder = '/app/upload'
 
 
 @app.route('/favicon.ico')
@@ -46,10 +47,10 @@ def predict():
 
             file = request.files['audio']    
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['upload_folder'],filename))
-            file_path = os.path.join(app.config['upload_folder'],filename)
+            file.save(os.path.join(uploads_folder,filename))
+            file_path = os.path.join(uploads_folder,filename)
             logging.debug(f'File saved at {file_path}')
-            subprocess.call(['ffmpeg', '-i', file_path,os.path.join(app.config['upload_folder'],'audio.wav')])
+            subprocess.call(['ffmpeg', '-i', file_path,os.path.join(uploads_folder,'audio.wav')])
             wav_path = '/var/log/uploads/audio.wav'
             logging.debug('Converted MP3 to WAV and saved ')
             audio,_ = librosa.load(wav_path,sr =16000)
