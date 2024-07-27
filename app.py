@@ -59,6 +59,8 @@ def predict():
             logging.debug('Features extracted Successfully')
             output = np.argmax(model.predict(features))
             logging.debug('Output obtained')
+            os.remove(file_path)
+            os.remove(wav_path)
             #return str(output)
             if output == 0 :
                 return 'Normal'
