@@ -1,4 +1,4 @@
-from flask import Flask,render_template, request
+from flask import Flask,render_template, request, jsonify
 import os
 import librosa
 import numpy as np 
@@ -66,11 +66,11 @@ def predict():
             os.remove(wav_path)
             #return str(output)
             if output == 0 :
-                return 'Normal'
+                return jsonify('prediction:','Normal')
             elif output == 1 :
-                return 'Vox Senilis'
+                return jsonify('prediction:','Vox Senilis')
             else :
-                return 'Laryngozele'
+                return jsonify('prediction:','Laryngozele')
         except Exception as e:
             return f'Error: {str(e)}'
     else :

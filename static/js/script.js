@@ -1,4 +1,5 @@
 const mic_btn = document.querySelector('#mic');
+const predictionResult = document.getElementById('predictionResult');
 
 mic_btn.addEventListener('click',ToggleMic);
 let can_record = false;
@@ -67,10 +68,10 @@ function sendDataToServer(blob) {
     })
     .then(data => {
         console.log('Upload Successful', data);
-        alert(`Server Response: ${data}`);
+        predictionResult.textContent = `The result after analyzing the voice is: ${data}`;
     })
     .catch(error => {
         console.error('Error Uploading File', error);
-        alert('Error Uploading File: ' + error.message);
+        predictionResult.textContent = 'Error Uploading File: ' + error.message;
     });
 }
