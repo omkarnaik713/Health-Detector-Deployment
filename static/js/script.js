@@ -71,8 +71,7 @@ function sendDataToServer(blob) {
     })
     .then(data => {
         console.log('Upload Successful', data);
-        const predictionText = data[1];
-        predictionResult.innerHTML = 'The result of the voice analysis is : <strong>${predictionText}</strong>';
+        predictionResult.innerHTML = 'The result of the voice analysis is : ' + data;
     })
     .catch(error => {
         console.error('Error Uploading File', error);

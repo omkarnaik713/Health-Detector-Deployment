@@ -66,11 +66,11 @@ def predict():
             os.remove(wav_path)
             #return str(output)
             if output == 0 :
-                return jsonify('prediction:','Normal')
+                return jsonify('Normal')
             elif output == 1 :
-                return jsonify('prediction:','Vox Senilis')
+                return jsonify('Vox Senilis')
             else :
-                return jsonify('prediction:','Laryngozele')
+                return jsonify('Laryngozele')
         except Exception as e:
             return f'Error: {str(e)}'
     else :
