@@ -1,5 +1,6 @@
 const mic_btn = document.querySelector('#mic');
 const predictionResult = document.getElementById('predictionResult');
+const loadingSpinner = document.getElementById('loading')
 
 mic_btn.addEventListener('click',ToggleMic);
 let can_record = false;
@@ -56,6 +57,8 @@ function sendDataToServer(blob) {
     const formData = new FormData();
     formData.append('audio', blob, 'recording.mp3'); // Ensure file extension matches
     const apiUrl = window.location.protocol === 'https:' ? 'https://health-detector-deployment.onrender.com/predict' : 'http://127.0.0.1:8080/predict';
+    // loading spinner 
+    loadingSpinner.style.display = 'block';
     fetch(apiUrl, {
         method: 'POST',
         body: formData
@@ -73,5 +76,8 @@ function sendDataToServer(blob) {
     .catch(error => {
         console.error('Error Uploading File', error);
         predictionResult.textContent = 'Error Uploading File: ' + error.message;
+    })
+    .finally(() => {
+        loadingSpinner.style.display = 'none';
     });
 }
