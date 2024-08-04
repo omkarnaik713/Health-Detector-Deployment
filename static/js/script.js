@@ -9,6 +9,7 @@ let is_recording = false;
 let recorder = null;
 let chunks = [];
 
+// setting up the audio device on the browser 
 function SetupAudio(){
     console.log('Setup')
     if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
@@ -23,7 +24,7 @@ function SetupAudio(){
     }
 }
 SetupAudio();
-
+// capturing the audio recording from the user and appending the chunks
 function SetupStrean(stream) {
     recorder = new MediaRecorder(stream);
     recorder.ondataavailable = e => {
@@ -53,6 +54,7 @@ function ToggleMic(){
         mic_btn.classList.remove("is-recording")
     }
 }
+// Sending the obtained audio to the server i.e app.py for processing
 function sendDataToServer(blob) {
     const formData = new FormData();
     formData.append('audio', blob, 'recording.mp3'); // Ensure file extension matches

@@ -20,6 +20,7 @@ model = pickle.load(open('nn_model.pkl','rb'))
 app.config['upload_folder'] = '/var/log/uploads'
 uploads_folder = '/app/upload'
 
+## addind a ping function to prevent the web app from sleeping
 @app.route('/ping', methods = ['GET','HEAD'])
 def ping():
     return 'OK', 200
