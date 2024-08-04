@@ -7,8 +7,7 @@ The project leverages a custom developed ANN architecture model to classify the 
 
 ## Project Status
 
-The project is currently deployed on render. To check out the working model visit https://health-detector-deployment.onrender.com
-
+The application is live and deployed on Render. You can explore the working model at [VoiceCheckup Deployment](https://health-detector-deployment.onrender.com).
 ## Demo
 
 
@@ -17,21 +16,19 @@ The project is currently deployed on render. To check out the working model visi
 
 ## Reflection
 
-This project was made in an attempt to understand more about processing and understanding audio data. 
-The original aim of this project was to fine-tune the Whisper Model from Hugging Face but the accuracy was not as expected with an accuracy ranging from 50% - 60%. The first reason which came to mind was that there were 80 features extracted from the audio which might have lead to a low accuracy but after reducing the number of features by half the accuracy did not improve significantly. Another reason which could be possible might be the Whisper model uses attention mechanism which is aimed for text generation from audio and is not very compatible with use cases where temporal dependencies is not required as it reduces the extraction of good features from the audio.
-Later MFCC was used to extract the features which worked well the given dataset.
+The initial goal of this project was to fine-tune the Whisper Model from Hugging Face. However, the performance did not meet expectations, with accuracy ranging between 50% and 60%. A key challenge was the model's feature extraction, where 80 features were initially used, but reducing the number of features did not significantly improve accuracy. The Whisper Model, designed primarily for text generation from audio, was found to be less compatible with tasks requiring precise temporal feature extraction.
 
-Hyperparameter tuning was a difficult process trying different combinations and understanding the impact of different hyperparameters like l2 regularizer which penalizes the model when the weight value becomes high, learning rate, number of nodes in each layer, batch size all had contradicting affects. Using MLflow turned out to be very helpful, as it allowed me to compare the performance of the model with different hyperparameters which in turn resulted in getting an accuracy of 82%. 
+Transitioning to Mel-Frequency Cepstral Coefficients (MFCC) for feature extraction significantly improved results. Hyperparameter tuning was a critical part of the process, involving adjustments to parameters such as the L2 regularizer, learning rate, number of nodes in each layer, and batch size. Utilizing MLflow was instrumental in comparing model performance across different hyperparameter settings, leading to an improved accuracy of 82%.
 
-Setting up the front-end took some time as the audio files were not uploading to the server. Another issue which arised soon after uploading the file on server was that librosa was unable to read the audio file directly since it did not have a file path. Temporarily saving it in a folder and later deleting it solved the problem and librosa was able to read the audio file.(If anyone is able read the audio file without saving they are more than welcome to send a pull request and update the code).
+Challenges also emerged during the frontend setup, particularly with uploading audio files to the server. Initially, librosa had difficulty reading files directly due to the absence of a file path. This was resolved by temporarily saving the files in a folder before processing. Contributions to improve this process are welcome, and pull requests are encouraged.
 
 Tools used :
-- Tensorflow
-- Flask
-- Librosa 
-- Pandas 
-- Numpy 
-- Docker 
+- Tensorflow: For building and training the ANN model.
+- Flask: For developing the backend API.
+- Librosa: For audio feature extraction.
+- Pandas: For data manipulation and analysis.
+- Numpy: For numerical operations.
+- Docker: For containerizing the application.
 
 ## Dataset
 
