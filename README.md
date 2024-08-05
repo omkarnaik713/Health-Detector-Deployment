@@ -11,7 +11,7 @@ The application is live and deployed on Render. You can explore the working mode
 ## Demo
 
 
-![VoiceCheckup](image/UI.png)
+![VoiceCheckup](Image/UI.png)
 
 
 ## Reflection
